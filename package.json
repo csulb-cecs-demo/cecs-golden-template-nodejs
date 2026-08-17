@@ -1,0 +1,16 @@
+{
+  "name": "golden-template-node",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A framework-agnostic Node.js back-end starter for a mean and median exercise.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

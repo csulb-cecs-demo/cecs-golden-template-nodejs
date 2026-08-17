@@ -1,0 +1,42 @@
+name: CI
+
+# Student-facing feedback loop. This workflow installs the dependency-free
+# Node project and runs the same test suite used for local development.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the project
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.x'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check the Verification Log was filled in
+        if: always()
+        shell: bash
+        run: |
+          if grep -qE '^Name:\s*$' VERIFICATION-LOG.md 2>/dev/null; then
+            echo "::warning file=VERIFICATION-LOG.md::Verification Log is not signed — fill it in before your final push."
+          fi

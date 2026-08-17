@@ -1,0 +1,23 @@
+# Installed dependencies
+node_modules/
+
+# Test and coverage output
+coverage/
+.nyc_output/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and generated reports
+*.log
+perf-report.md
+perf-report.txt
+perf-summary.json
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
